@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Candy Closett — A Home for Pretty Things 💕</title>
+  <meta name="description" content="Vibrant, handmade tea mats, safras & lamasa miniatures. Crafted with love. Custom orders welcome. Ships to Mumbai, Kolkata & Abu Dhabi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600&family=Grandstander:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: #fff8f9; color: #2d2d2d; overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
+      z-index: 100; padding: 0.75rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid #ffe4ef;
+    }
+    .nav-logo { font-family: 'Pacifico', cursive; font-size: 1.4rem; color: #d63f83; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { text-decoration: none; color: #665; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #e63f8c; }
+    .nav-cart { background: #e63f8c; color: #fff; padding: 8px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; cursor: pointer; border: none; font-family: 'Poppins', sans-serif; }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      nav { padding: 0.75rem 1rem; }
+    }
+
+    /* ── TICKER ── */
+    .ticker-wrap { background: #fff8f9; border-top: 1.5px solid #ffe4ef; border-bottom: 1.5px solid #ffe4ef; padding: 0.6rem 0; overflow: hidden; white-space: nowrap; }
+    .ticker { display: inline-block; animation: ticker 22s linear infinite; font-size: 0.8rem; color: #e63f8c; font-weight: 500; letter-spacing: 2px; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #ffe4f0 0%, #fff4cc 40%, #e4f7ff 80%, #f0e8ff 100%);
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 1.5rem 4rem; position: relative; overflow: hidden;
+    }
+    .blob { position: absolute; border-radius: 50%; opacity: 0.35; animation: float 6s ease-in-out infinite; pointer-events: none; }
+    .blob1 { width: 220px; height: 220px; background: #ff79b0; top: -70px; left: -70px; animation-delay: 0s; }
+    .blob2 { width: 160px; height: 160px; background: #ffd700; top: 80px; right: -50px; animation-delay: 1.5s; }
+    .blob3 { width: 130px; height: 130px; background: #a78bfa; bottom: 60px; left: 20px; animation-delay: 3s; }
+    .blob4 { width: 190px; height: 190px; background: #6ee7b7; bottom: -60px; right: 30px; animation-delay: 2s; }
+    @keyframes float { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-18px) scale(1.04); } }
+
+    .floating-hearts { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 1; }
+    .heart { position: absolute; font-size: 20px; opacity: 0.18; animation: drift 8s ease-in-out infinite; }
+    @keyframes drift { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-25px) rotate(15deg); } }
+
+    .hero-inner { position: relative; z-index: 2; }
+    .pill-badge { display: inline-block; background: #fff; border: 2px solid #e63f8c; color: #e63f8c; font-size: 0.72rem; font-weight: 600; padding: 4px 14px; border-radius: 50px; margin-bottom: 1rem; letter-spacing: 1px; }
+    .logo { font-family: 'Pacifico', cursive; font-size: clamp(2.2rem, 6vw, 3.5rem); color: #d63f83; letter-spacing: 1px; margin-bottom: 0.25rem; }
+    .tagline { font-size: clamp(0.85rem, 2.5vw, 1rem); color: #b06090; margin-bottom: 2rem; letter-spacing: 2px; }
+    .hero-headline { font-family: 'Grandstander', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; color: #2d2d2d; line-height: 1.15; margin-bottom: 1rem; }
+    .hero-headline .accent { background: linear-gradient(135deg, #ff79b0, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: clamp(0.9rem, 2vw, 1.05rem); color: #665; max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+
+    /* ── BUTTONS ── */
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .btn { padding: 13px 28px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; border: none; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; display: inline-block; }
+    .btn-primary { background: #e63f8c; color: #fff; box-shadow: 0 4px 15px #e63f8c66; }
+    .btn-secondary { background: #fff; color: #e63f8c; border: 2px solid #e63f8c; }
+    .btn-mint { background: #3ecfad; color: #fff; box-shadow: 0 4px 15px #3ecfad55; }
+    .btn-white { background: #fff; color: #7c3aed; border: none; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ── SECTIONS ── */
+    .section-wrap { padding: 4rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .section-title { font-family: 'Grandstander', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; color: #2d2d2d; margin-bottom: 0.4rem; }
+    .section-title span { color: #e63f8c; }
+    .section-sub { color: #aaa; font-size: 0.8rem; margin-bottom: 2.5rem; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* ── COLLECTIONS ── */
+    .collections-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .collection-card { border-radius: 20px; overflow: hidden; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s; background: #fff; }
+    .collection-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+    .card-img { width: 100%; height: 240px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; background-size: cover; background-position: center; position: relative; overflow: hidden; }
+    .card-img-1 { background: linear-gradient(135deg, #ffd6e7, #ffb3cc); }
+    .card-img-2 { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+    .card-img-3 { background: linear-gradient(135deg, #ede9fe, #c4b5fd); }
+    .card-img-4 { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card-body { background: #fff; padding: 1rem; border: 1.5px solid #f3e8ef; border-top: none; border-radius: 0 0 20px 20px; }
+    .card-body h3 { font-family: 'Grandstander', sans-serif; font-size: 1rem; font-weight: 700; color: #2d2d2d; margin-bottom: 4px; }
+    .card-body p { font-size: 0.78rem; color: #998; line-height: 1.5; }
+    .card-tag { display: inline-block; background: #ffe4ef; color: #e63f8c; font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 50px; margin-top: 8px; }
+
+    /* ── FEATURED PRODUCTS ── */
+    .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 3rem; }
+    .featured-card { background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; }
+    .featured-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+    .featured-img { width: 100%; height: 360px; overflow: hidden; position: relative; }
+    .featured-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .featured-card:hover .featured-img img { transform: scale(1.05); }
+    .featured-body { padding: 1.5rem; }
+    .featured-body h3 { font-family: 'Grandstander', sans-serif; font-size: 1.3rem; font-weight: 800; color: #2d2d2d; margin-bottom: 0.5rem; }
+    .featured-body p { font-size: 0.88rem; color: #665; line-height: 1.7; margin-bottom: 1rem; }
+    .featured-price { font-family: 'Grandstander', sans-serif; font-size: 1.1rem; font-weight: 700; color: #e63f8c; margin-bottom: 1rem; }
+    .featured-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* ── WHY ── */
+    .why-section { background: #fff; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+    .why-card { background: #fff8f9; border-radius: 20px; padding: 1.5rem 1.25rem; text-align: center; border: 1.5px solid #f3e8ef; transition: transform 0.2s; }
+    .why-card:hover { transform: translateY(-4px); }
+    .why-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .why-card h4 { font-family: 'Grandstander', sans-serif; font-size: 0.95rem; font-weight: 700; color: #2d2d2d; margin-bottom: 4px; }
+    .why-card p { font-size: 0.78rem; color: #998; line-height: 1.5; }
+
+    /* ── REVIEWS ── */
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .review-card { background: #fff; border-radius: 20px; padding: 1.5rem; border: 1.5px solid #f3e8ef; }
+    .stars { color: #f59e0b; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .review-text { font-size: 0.82rem; color: #554; line-height: 1.6; margin-bottom: 1rem; font-style: italic; }
+    .reviewer { display: flex; align-items: center; gap: 10px; }
+    .avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 600; color: #fff; flex-shrink: 0; }
+    .reviewer-info p { font-size: 0.78rem; font-weight: 600; color: #2d2d2d; margin: 0; }
+    .reviewer-info span { font-size: 0.7rem; color: #aaa; }
+
+    /* ── INSTAGRAM ── */
+    .insta-strip { background: linear-gradient(135deg, #f9a8d4, #c084fc, #60a5fa); padding: 3rem 1.5rem; text-align: center; }
+    .insta-strip h2 { font-family: 'Grandstander', sans-serif; font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+    .insta-strip p { color: rgba(255,255,255,0.85); margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 480px; margin: 0 auto 1.5rem; }
+    .insta-tile { border-radius: 12px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; transition: transform 0.2s; overflow: hidden; position: relative; }
+    .insta-tile:hover { transform: scale(1.06); }
+    .insta-tile img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+    .t1{background:#ffd6e7} .t2{background:#d1fae5} .t3{background:#ede9fe} .t4{background:#fef3c7}
+    .t5{background:#fee2e2} .t6{background:#dbeafe} .t7{background:#ecfdf5} .t8{background:#fdf4ff}
+
+    /* ── CUSTOM ── */
+    .custom-section { background: linear-gradient(135deg, #fff4f8 0%, #f0fdf4 100%); border-radius: 30px; padding: 3rem 2rem; text-align: center; margin: 2rem auto; max-width: 700px; }
+    .custom-section p { color: #776; font-size: 0.9rem; max-width: 480px; margin: 0 auto 2rem; line-height: 1.7; }
+
+    /* ── FOOTER ── */
+    footer { background: #2d2d2d; color: #ccc; text-align: center; padding: 2.5rem 1.5rem; }
+    .footer-logo { font-family: 'Pacifico', cursive; font-size: 1.6rem; color: #f9a8d4; margin-bottom: 0.5rem; }
+    footer p { font-size: 0.8rem; color: #888; margin-bottom: 0.25rem; }
+    .footer-handles { display: flex; gap: 12px; justify-content: center; margin: 1rem 0; flex-wrap: wrap; }
+    .handle { background: #3d3d3d; padding: 6px 16px; border-radius: 50px; font-size: 0.75rem; color: #f9a8d4; cursor: pointer; text-decoration: none; }
+    .badge-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .badge { background: #3d3d3d; color: #aaa; font-size: 0.7rem; padding: 5px 12px; border-radius: 50px; }
+
+    /* ── WHATSAPP FAB ── */
+    .whatsapp-fab {
+      position: fixed; bottom: 24px; right: 24px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25d366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 20px #25d36655; cursor: pointer; z-index: 200;
+      transition: transform 0.2s; border: none; font-size: 1.5rem; color: #fff;
+      text-decoration: none;
+    }
+    .whatsapp-fab:hover { transform: scale(1.1); }
+
+    /* ── SCROLL REVEAL ── */
+    .scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">The Candy Closett</div>
+    <ul class="nav-links">
+      <li><a href="#collections">Shop</a></li>
+      <li><a href="#custom">Custom Orders</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cart">🛒 Cart (0)</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="floating-hearts" aria-hidden="true">
+      <span class="heart" style="left:10%;top:20%;animation-delay:0s">💕</span>
+      <span class="heart" style="left:80%;top:30%;animation-delay:2s">✨</span>
+      <span class="heart" style="left:50%;top:70%;animation-delay:4s">🌸</span>
+      <span class="heart" style="left:25%;top:60%;animation-delay:1s">💛</span>
+      <span class="heart" style="left:70%;top:15%;animation-delay:3s">💜</span>
+    </div>
+    <div class="blob blob1" aria-hidden="true"></div>
+    <div class="blob blob2" aria-hidden="true"></div>
+    <div class="blob blob3" aria-hidden="true"></div>
+    <div class="blob blob4" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="pill-badge">✦ Handmade with love ✦</div>
+      <div class="logo">The Candy Closett</div>
+      <p class="tagline">✦ a home for pretty things 💕 ✦</p>
+      <h1 class="hero-headline">
+        Vibrant, <span class="accent">handmade</span><br>
+        things that make<br>
+        your home ✨ sparkle ✨
+      </h1>
+      <p class="hero-sub">Tea mats, safras & lamasa miniatures — crafted with love, bursting with colour. Perfect for your home, your table, your joy.</p>
+      <div class="cta-row">
+        <a href="#collections" class="btn btn-primary">Shop Tea Mats</a>
+        <a href="#collections" class="btn btn-mint">Browse Miniatures</a>
+        <!-- Replace YOUR_NUMBER with your WhatsApp number e.g. 971501234567 -->
+        <a href="https://wa.me/YOUR_NUMBER?text=Hi!%20I'd%20like%20to%20place%20a%20custom%20order%20%F0%9F%92%95" target="_blank" class="btn btn-secondary">Custom Orders 💬</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <span class="ticker">
+      &nbsp;&nbsp;&nbsp;💕 100% HANDMADE &nbsp;&nbsp;&nbsp;✨ CUSTOM ORDERS WELCOME &nbsp;&nbsp;&nbsp;🌈 VIBRANT COLOUR PALETTES &nbsp;&nbsp;&nbsp;🎁 PERFECT RETURN GIFTS &nbsp;&nbsp;&nbsp;🏠 SHIPS TO MUMBAI · KOLKATA · ABU DHABI &nbsp;&nbsp;&nbsp;💕 100% HANDMADE &nbsp;&nbsp;&nbsp;✨ CUSTOM ORDERS WELCOME &nbsp;&nbsp;&nbsp;🌈 VIBRANT COLOUR PALETTES &nbsp;&nbsp;&nbsp;🎁 PERFECT RETURN GIFTS &nbsp;&nbsp;&nbsp;
+    </span>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <div class="section-wrap scroll-reveal">
+    <div style="text-align:center;margin-bottom:0.5rem">
+      <h2 class="section-title">Featured <span>favorites</span></h2>
+      <p class="section-sub">Our customers' top picks</p>
+    </div>
+    <div class="featured-grid">
+      <div class="featured-card">
+        <div class="featured-img">
+          <img src="daisy_safra.jpg" alt="Daisy Dreams Safra - Teal & Yellow table mat">
+        </div>
+        <div class="featured-body">
+          <h3>Daisy Dreams Safra</h3>
+          <p>Transform your dining space with our stunning Daisy Dreams safra! Featuring cheerful white daisies on a rich teal background with vibrant yellow borders. Perfect for family meals or adding a pop of color to your home. ✨</p>
+          <div class="featured-price">From ₹699</div>
+          <div class="featured-tags">
+            <span class="card-tag">🌼 Hand-finished</span>
+            <span class="card-tag">💛 Custom sizes</span>
+            <span class="card-tag">🧺 Washable</span>
+          </div>
+        </div>
+      </div>
+      <div class="featured-card">
+        <div class="featured-img">
+          <img src="miniatures.jpg" alt="Indian Cuisine Miniature Set - Handmade Lamasa">
+        </div>
+        <div class="featured-body">
+          <h3>Indian Cuisine Miniature Set</h3>
+          <p>Bring playtime to life with our handcrafted lamasa miniatures! This adorable set includes Dal, Chawal, Salad, Tarkari, and more. Each piece lovingly made with vibrant colors. Perfect for imaginative play or unique return gifts! 🍛</p>
+          <div class="featured-price">₹899 per set</div>
+          <div class="featured-tags">
+            <span class="card-tag">💜 100% Handmade</span>
+            <span class="card-tag">🎁 Perfect gifts</span>
+            <span class="card-tag">✨ Customizable</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLLECTIONS -->
+  <div id="collections" class="section-wrap scroll-reveal">
+    <div style="text-align:center;margin-bottom:0.5rem">
+      <h2 class="section-title">Shop our <span>collections</span></h2>
+      <p class="section-sub">Pick your pretty</p>
+    </div>
+    <div class="collections-grid">
+      <div class="collection-card">
+        <div class="card-img card-img-1">
+          <img src="daisy_safra.jpg" alt="Vibrant daisy print safra table mat with yellow border">
+        </div>
+        <div class="card-body">
+          <h3>Tea Mats & Snack Mats</h3>
+          <p>Brighten up every chai break and snack time with our handcrafted mats</p>
+          <span class="card-tag">Most loved ✨</span>
+        </div>
+      </div>
+      <div class="collection-card">
+        <div class="card-img card-img-2">
+          <img src="daisy_safra.jpg" alt="Handmade safra tablecloth">
+        </div>
+        <div class="card-body">
+          <h3>Safras</h3>
+          <p>Stunning handmade tablecloths that transform your dining table instantly</p>
+          <span class="card-tag">New arrivals 🌟</span>
+        </div>
+      </div>
+      <div class="collection-card">
+        <div class="card-img card-img-3">
+          <img src="miniatures.jpg" alt="Handmade miniature Indian food lamasa set">
+        </div>
+        <div class="card-body">
+          <h3>Lamasa Miniatures</h3>
+          <p>Adorable tiny creations — perfect for shelfies, gifting & décor moments</p>
+          <span class="card-tag">So cute 💜</span>
+        </div>
+      </div>
+      <div class="collection-card">
+        <div class="card-img card-img-4">🎁</div>
+        <div class="card-body">
+          <h3>Return Gifts</h3>
+          <p>Unique, colourful return gifts that guests will actually love to keep</p>
+          <span class="card-tag">Gift ready 💛</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <div class="why-section" id="about">
+    <div class="section-wrap scroll-reveal">
+      <div style="text-align:center;margin-bottom:0.5rem">
+        <h2 class="section-title">Why you'll <span>love us</span></h2>
+        <p class="section-sub">Handmade magic, every time</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-icon">🧵</div><h4>100% Handmade</h4><p>Every piece is crafted by hand — no two are exactly alike</p></div>
+        <div class="why-card"><div class="why-icon">🎨</div><h4>Custom Colours</h4><p>Pick your palette and we'll make it just for you</p></div>
+        <div class="why-card"><div class="why-icon">💌</div><h4>Made with Love</h4><p>Each piece tells a story — born from a love of pretty things</p></div>
+        <div class="why-card"><div class="why-icon">🎁</div><h4>Gift Ready</h4><p>Beautifully packaged — perfect as gifts, return gifts & favours</p></div>
+        <div class="why-card"><div class="why-icon">✈️</div><h4>Worldwide Shipping</h4><p>Mumbai · Kolkata · Abu Dhabi and beyond</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="section-wrap scroll-reveal">
+    <div style="text-align:center;margin-bottom:0.5rem">
+      <h2 class="section-title">Happy <span>customers</span></h2>
+      <p class="section-sub">Real love from real people</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The tea mats are absolutely gorgeous! My kitchen corner looks like a café now. Ordered 3 sets for return gifts and everyone loved them!"</p>
+        <div class="reviewer">
+          <div class="avatar" style="background:#e63f8c">P</div>
+          <div class="reviewer-info"><p>Priya M.</p><span>Mumbai</span></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Ordered a custom safra for Eid and it was beyond what I imagined. The colours were so vibrant and it was delivered on time. 10/10!"</p>
+        <div class="reviewer">
+          <div class="avatar" style="background:#a78bfa">S</div>
+          <div class="reviewer-info"><p>Sara K.</p><span>Abu Dhabi</span></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The lamasa miniatures are the cutest things I've ever seen! Bought a set for my daughter's birthday and she was over the moon. Will order again!"</p>
+        <div class="reviewer">
+          <div class="avatar" style="background:#3ecfad">R</div>
+          <div class="reviewer-info"><p>Rohini D.</p><span>Kolkata</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM -->
+  <div class="insta-strip scroll-reveal">
+    <h2>Follow the pretty 📸</h2>
+    <p>@the_candy_closett · @the_candy_closett_handmade</p>
+    <div class="insta-grid" aria-hidden="true">
+      <div class="insta-tile t1"><img src="daisy_safra.jpg" alt="Instagram post"></div>
+      <div class="insta-tile t2">🍵</div>
+      <div class="insta-tile t3"><img src="miniatures.jpg" alt="Instagram post"></div>
+      <div class="insta-tile t4">🎀</div>
+      <div class="insta-tile t5">✨</div>
+      <div class="insta-tile t6"><img src="daisy_safra.jpg" alt="Instagram post"></div>
+      <div class="insta-tile t7">🌿</div>
+      <div class="insta-tile t8"><img src="miniatures.jpg" alt="Instagram post"></div>
+    </div>
+    <a href="https://instagram.com/the_candy_closett" target="_blank" class="btn btn-white">Follow us on Instagram →</a>
+  </div>
+
+  <!-- CUSTOM ORDERS -->
+  <div id="custom" class="section-wrap scroll-reveal">
+    <div class="custom-section">
+      <h2 class="section-title">Want something <span>custom?</span></h2>
+      <p>Pick your colours, size, and style — we'll handcraft something made just for you. Perfect for parties, events, and gifts.</p>
+      <div class="cta-row">
+        <!-- Replace YOUR_NUMBER below with your WhatsApp number e.g. 971501234567 -->
+        <a href="https://wa.me/YOUR_NUMBER?text=Hi!%20I'd%20like%20to%20place%20a%20custom%20order%20%F0%9F%92%95" target="_blank" class="btn btn-primary">Start Your Custom Order 💬</a>
+        <a href="https://instagram.com/the_candy_closett" target="_blank" class="btn btn-secondary">DM on Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-logo">The Candy Closett</div>
+    <p style="color:#f9a8d4;font-size:0.85rem;margin-bottom:0.5rem">A home for pretty things 💕</p>
+    <div class="footer-handles">
+      <a href="https://instagram.com/the_candy_closett" target="_blank" class="handle">@the_candy_closett</a>
+      <a href="https://instagram.com/the_candy_closett_handmade" target="_blank" class="handle">@the_candy_closett_handmade</a>
+    </div>
+    <div class="badge-row">
+      <span class="badge">🇮🇳 Mumbai</span>
+      <span class="badge">🇮🇳 Kolkata</span>
+      <span class="badge">🇦🇪 Abu Dhabi</span>
+    </div>
+    <p>© 2025 The Candy Closett · Handmade with love</p>
+  </footer>
+
+  <!-- WHATSAPP FAB -->
+  <!-- Replace YOUR_NUMBER below with your WhatsApp number e.g. 971501234567 -->
+  <a href="https://wa.me/YOUR_NUMBER?text=Hi!%20I%20have%20a%20question%20about%20The%20Candy%20Closett%20%F0%9F%92%95" target="_blank" class="whatsapp-fab" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">💬</a>
+
+  <script>
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.scroll-reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
